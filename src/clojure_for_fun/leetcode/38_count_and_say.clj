@@ -1,5 +1,6 @@
 (ns clojure-for-fun.leetcode.38-count-and-say
-  ;https://leetcode-cn.com/problems/count-and-say/)
+  ;https://leetcode-cn.com/problems/count-and-say/
+  )
 
 ; unnecessary verbose, transducer approach
 (defn count-and-say-trans
@@ -41,7 +42,6 @@
   (transduce
    count-and-say-trans
    str!
-   (StringBuilder.)
    input))
 
 
@@ -57,7 +57,6 @@
   (transduce
    count-and-say-trans
    str!
-   (StringBuilder.)
    "122233")
   (= (countAndSay 10)
      "13211311123113112211")
