@@ -3,6 +3,8 @@
   (:require [clojure.string :as str]
             [criterium.core :as criterium]))
 
+
+;; solutin 1: using regex to remove pair
 (defn replace-pair [^String input]
   (str/replace input #"\(\)|\[\]|\{\}" ""))
 
@@ -22,6 +24,9 @@
        (replace-pair-n-times)
        (str/blank?)))
 
+;; solution 2: using stack to match pair
+;; have to implement peek due to below issue
+;; https://clojure.atlassian.net/browse/CLJ-2464
 (defn peek! [tv] (nth tv (dec (count tv))))
 
 (defn is-valid? [^String input]
