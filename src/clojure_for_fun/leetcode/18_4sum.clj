@@ -17,6 +17,11 @@
           acc)))))
 
 (defn gen-all-unique-pos [list1 list2]
+  "Given 2 Vector each Vector have element contains 2 values
+  generate all combination of the two list and put all values in hashset.
+  Only keep hashet length = 4 to remove duplicated
+  input: [[1 2] [2 3]] [[3 4]]
+  output: #{#{1 4 3 2}}"
   (let [len1 (count list1)
         len2 (count list2)]
     (loop [index1 0
@@ -32,6 +37,7 @@
           acc)))))
 
 (defn generate-two-sum [input]
+  "Given a vector, generate all 2sum result to hashmap, sum value as key, and index of 2 elements as vector"
   (->> input
        generate-two-sum-list
        (reduce #(update-map %1 (reduce (fn [acc value]
@@ -42,7 +48,7 @@
   (let [two-sum-map (generate-two-sum input)
         answer (transient #{})]
     (reduce-kv
-      (fn [m k v]
+      (fn [_ k v]
         (let [value (- expect k)]
           (if-let [value-set (two-sum-map value)]
             (doseq [e (gen-all-unique-pos v value-set)]
