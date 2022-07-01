@@ -1,19 +1,20 @@
 (ns clojure-for-fun.riddles.prisoners)
 
+; background https://rosettacode.org/wiki/100_prisoners
 
-(defn random-boxes []
+(defn random-boxes
+  "Generate all the 100 numbers. each stands for the card number in the box. Index = prisoner number"
+  []
   (shuffle (range 100)))
-
 
 (defn find-box
   [boxes prisoner]
-  (loop [next prisoner
+  (loop [box-num (nth boxes prisoner)
          counter 0]
-    (let [box-num (nth boxes next)]
-      (cond
-        (= counter 50) false
-        (= prisoner box-num) true
-        :else (recur box-num (inc counter))))))
+     (cond
+         (= counter 50) false
+         (= prisoner box-num) true
+         :else (recur (nth boxes box-num) (inc counter)))))
 
 (defn start-game [_n]
   (let [new-boxes (random-boxes)]
