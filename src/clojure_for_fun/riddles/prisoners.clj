@@ -11,15 +11,15 @@
   [boxes prisoner]
   (loop [box-num (nth boxes prisoner)
          counter 0]
-     (cond
-         (= counter 50) false
-         (= prisoner box-num) true
-         :else (recur (nth boxes box-num) (inc counter)))))
+    (cond
+      (= counter 50) false
+      (= prisoner box-num) true
+      :else (recur (nth boxes box-num) (inc counter)))))
 
 (defn start-game [_n]
   (let [new-boxes (random-boxes)]
     (->> (range 100)
-         (map (partial find-box new-boxes ))
+         (map (partial find-box new-boxes))
          (every? true?))))
 
 (defn count-result
@@ -36,7 +36,7 @@
   (transduce
     (map start-game)
     count-result
-   (range game-count)))
+    (range game-count)))
 
 (comment
   (find-box (random-boxes) 10)

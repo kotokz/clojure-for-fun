@@ -5,8 +5,9 @@
 (defn update-map [m k v]
   (update m k (fnil #(conj % v) [])))
 
-(defn generate-two-sum [input]
+(defn generate-two-sum
   "Given a vector, generate all 2sum result to hashmap, sum value as key, and index of 2 elements as vector"
+  [input]
   (let [len (count input)]
     (loop [index 0
            point 1
